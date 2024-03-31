@@ -1,6 +1,4 @@
 /* eslint-disable react/prop-types */
-// Note.js
-
 function Note(props) {
   return (
     <div className="note">
