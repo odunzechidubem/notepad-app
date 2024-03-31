@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
+// CreateArea.js
 import { useState } from "react";
 
 function CreateArea(props) {
   const [note, setNote] = useState({
     title: "",
-    content: ""
+    content: "",
+    image: null  // Added image state
   });
 
   function handleChange(event) {
@@ -18,11 +20,19 @@ function CreateArea(props) {
     });
   }
 
+  function handleImageChange(event) {
+    setNote(prevNote => ({
+      ...prevNote,
+      image: event.target.files[0] // Store the selected image
+    }));
+  }
+
   function submitNote(event) {
     props.onAdd(note);
     setNote({
       title: "",
-      content: ""
+      content: "",
+      image: null
     });
     event.preventDefault();
   }
@@ -43,6 +53,7 @@ function CreateArea(props) {
           placeholder="Take a note..."
           rows="3"
         />
+        <input type="file" onChange={handleImageChange} /> {/* Image upload input */}
         <button onClick={submitNote}>Add</button>
       </form>
     </div>

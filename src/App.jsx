@@ -1,3 +1,4 @@
+// App.js
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -21,29 +22,24 @@ function App() {
   }, [notes]);
 
   function addNote(newNote) {
-    setNotes(prevNotes => {
-      return [...prevNotes, newNote];
-    });
+    setNotes(prevNotes => [...prevNotes, newNote]);
   }
 
   function deleteNote(id) {
-    setNotes(prevNotes => {
-      return prevNotes.filter((noteItem, index) => {
-        return index !== id;
-      });
-    });
+    setNotes(prevNotes => prevNotes.filter((note, index) => index !== id));
   }
 
   return (
     <div>
       <Header />
       <CreateArea onAdd={addNote} />
-      {notes.map((noteItem, index) => (
+      {notes.map((note, index) => (
         <Note
           key={index}
           id={index}
-          title={noteItem.title}
-          content={noteItem.content}
+          title={note.title}
+          content={note.content}
+          image={note.image} // Pass image as prop to Note component
           onDelete={deleteNote}
         />
       ))}
