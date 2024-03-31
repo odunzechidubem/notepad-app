@@ -1,4 +1,3 @@
-// CreateArea.js
 import { useState, useRef } from "react";
 
 function CreateArea(props) {
